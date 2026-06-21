@@ -72,16 +72,9 @@ a {
   background-column: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(14, 165, 233, 0.05));
   aling-content: center;
 }
-.codigo-container {
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(4, 50px);
-  gap: 3%;
-  justify-content: center;
-}
+
 
 .codigo-container input {
-  width: 50px;
   height: 50px;
   text-align: center;
   font-size: 1.5rem;
@@ -298,7 +291,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("/img/Escadas.png");
+  background-image: url("../public/img/Escadas.png");
   background-size: cover;
   background-position: center;
   filter: blur(0px);

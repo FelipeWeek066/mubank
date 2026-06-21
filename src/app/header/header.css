@@ -1,0 +1,20 @@
+
+.site-header {
+  background: var(--header-bg);
+  color: var(--header-text);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  background-color: rgba(15, 23, 42, 0.8);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  height: 4rem;
+}
+

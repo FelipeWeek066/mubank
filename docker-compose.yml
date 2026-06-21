@@ -1,0 +1,17 @@
+services:
+  mubank:
+    container_name: mubank-front
+    build:
+      context: "/"
+    image: mubank-front:latest
+    env_file:
+      - "./.env"
+    ports:
+      - 80:80
+    expose:
+      - 80
+    networks:
+      - internalnet
+networks:
+  internalnet:
+    driver: bridge

@@ -1,0 +1,23 @@
+
+<main>
+  <section class="login-section">
+    <div class="container-login">
+      <h2>Acesse sua conta</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div class="codigo-container">
+          <label for="name">nome: </label>
+          <input type="text" formControlName="login">
+          <br>
+          <label for="pasasword">senha: </label>
+          <input type="text" formControlName="password">
+        </div>
+        <div class="form-group">
+        </div>
+        <button type="submit" class="btn-login btn-primary-login">
+          <img class="feature-icon-login-submit" src="/img/Submit.png" alt="enviar">
+        </button>
+      </form>
+      <a href="index.html" class="back-link">Voltar </a>
+    </div>
+  </section>
+</main>
