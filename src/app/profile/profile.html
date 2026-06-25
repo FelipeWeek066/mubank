@@ -5,14 +5,14 @@
         <div class="profile-heading">
           <div>
             <p class="eyebrow">Painel de perfil</p>
-            <h1>Olá, <span id="profile-title-name">Usuário MUBank</span></h1>
+            <h1>olá <span>{{signalUserProfile().name}}</span></h1>
             <p class="profile-lead">Fidelidade com MUBank ⭐⭐⭐⭐⭐ </p>
 
           </div>
 
           <div class="balance-summary">
             <span class="summary-label">Saldo disponível</span>
-            <div class="balance-tag"><span id="balance-amount">1.250,00 MUP COIN</span></div>
+            <div class="balance-tag"><span id="balance-amount">{{signalUserProfile().amount}} MuCoins</span></div>
 
           </div>
         </div>
@@ -24,16 +24,18 @@
             </div>
 
             <div class="avatar-actions">
-              <button type="button" id="change-photo" class="button button-secondary">Alterar foto</button>
+             <!-- <button type="button" id="change-photo" class="button button-secondary">Alterar foto</button>-->
               <input id="photo-input" type="file" accept="image/*" hidden>
             </div>
 
             <div class="profile-info-card">
               <h2>Resumo rápido</h2>
-              <div class="info-row"><span>Nome</span><strong id="profile-display-name">Usuário MUBank</strong></div>
-              <div class="info-row"><span>Conta</span><strong>0001 · 234567-8</strong></div>
-              <div class="info-row"><span>Cliente</span><strong>Desde 05/2024</strong></div>
+              <div class="info-row"><span>Nome</span><strong id="profile-display-name">{{signalUserProfile().name}}</strong></div>
+              <div class="info-row"><span>Cliente</span><strong>Desde {{signalUserProfile().entryDate}}</strong></div>
+
+
             </div>
+
           </aside>
 
           <section class="profile-main">
@@ -42,25 +44,28 @@
                 <h2>Movimentações</h2>
 
               </div>
-              <button type="button" class="button button-secondary">Ver detalhes</button>
+             <!-- <button type="button" class="button button-secondary">Ver detalhes</button>-->
             </div>
 
 
             <div class="profile-field">
-              <label for="profile-name">Nome completo</label>
-              <input id="profile-name" type="text" value="Usuário MUBank">
+              <label for="profile-name">Nome</label>
+              <input id="profile-name" disabled="true" type="text" value="{{signalUserProfile().name}}">
             </div>
 
+            <!--
             <div class="profile-actions">
               <button type="button" id="save-name" class="button button-primary">Salvar alterações</button>
             </div>
 
             <div class="transaction-actions">
               <button type="button" id="withdraw-button" class="button button-secondary">Sacar</button>
-              <button type="button" id="deposit-button" class="button button-primary">Depositar</button>
+              <button type="button" class="button button-primary">Depositar</button>
             </div>
-
+            -->
             <!-- Serviços (status cards) colocados abaixo de Movimentações -->
+            <br>
+            <br>
             <div class="service-overview">
               <div class="service-status-grid">
                 <div class="status-card status-open">
@@ -86,43 +91,9 @@
         <!-- serviços movidos para dentro de Movimentações -->
       </div>
 
+      <app-deposit-view></app-deposit-view>
 
 
-      <div class="service-table-card">
-        <div class="table-header-row">
-          <h2>Histórico de contratos</h2>
-          <span class="table-note">Histórico</span>
-        </div>
-        <div class="table-wrapper">
-          <table class="service-table">
-            <thead>
-            <tr>
-              <th>Serviço</th>
-              <th>Início</th>
-              <th>Vencimento</th>
-              <th>Status</th>
-              <th>Qtde.</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>Financiamento VIP</td>
-              <td>05/06/2026</td>
-              <td>08/06/2026</td>
-              <td><span class="status-badge status-open">Em aberto</span></td>
-              <td>300</td>
-            </tr>
-            <tr>
-              <td>Empréstimo</td>
-              <td>18/03/2026</td>
-              <td>21/03/2026</td>
-              <td><span class="status-badge status-pending">Pendentes</span></td>
-              <td>200</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
   </div>
   </section>
 </main>

@@ -1,0 +1,34 @@
+
+<div class="service-table-card">
+  <div class="table-header-row">
+    <h2>Histórico de transferências</h2>
+    <span class="table-note">Histórico</span>
+  </div>
+  <div class="table-wrapper">
+    <table class="service-table">
+      <thead>
+      <tr>
+        <th>de</th>
+        <th>para</th>
+        <th>data</th>
+        <th>Status</th>
+        <th>valor</th>
+
+      </tr>
+      </thead>
+      <tbody>
+        @for (deposit of depositSignal(); track deposit.payee){
+      <tr>
+        <td>{{ deposit.payer }}</td>
+        <td>{{ deposit.payee }}</td>
+        <td>{{ deposit.date }}</td>
+        <td><span class="status-badge status-open">concluido</span></td>
+        <td>{{ deposit.amount }}</td>
+      </tr>
+        } @empty {
+          <td colspan="2">Nenhum depósito encontrado.</td>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

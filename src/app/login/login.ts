@@ -1,7 +1,6 @@
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Data } from '../data';
-import { login } from '../entities/login';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -21,16 +20,16 @@ export class Login {
     login: new FormControl(''),
     password: new FormControl(''),
   });
-  login: login = new login();
 
   submitLogin() {
-    this.data.login(<login>this.loginForm.value).subscribe({
+    this.data.login(this.loginForm.value).subscribe({
       next: (response: any) => {
         console.log("Logado com sucesso ", isPlatformBrowser(this.platformId) ? localStorage.getItem('token') : '');
         const tokenValue = response.token;
         isPlatformBrowser(this.platformId) ? localStorage.setItem('token', tokenValue) : '';
+        isPlatformBrowser(this.platformId) ? localStorage.setItem('name', <string>this.loginForm.value.login) : '';
+        this.router.navigate(['/profile']);
 
-        this.router.navigate(['/']);
       },
       error: (err) => {
       console.error('Erro ao fazer login:', err);
@@ -38,8 +37,7 @@ export class Login {
       }
   });
 
-    this.login.password = this.loginForm.value.password ?? '';
 
-    this.data.login(this.login);
+    this.data.login(this.loginForm.value);
   }
 }

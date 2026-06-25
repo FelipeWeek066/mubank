@@ -3,7 +3,6 @@ import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { enviroment } from '../enviroments/enviroment';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {login} from './entities/login';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -12,11 +11,11 @@ import { isPlatformBrowser } from '@angular/common';
 export class Data {
   private apiURL = enviroment.API_BASE_URL;
   private httpClient = inject(HttpClient);
-  private platformId = inject(PLATFORM_ID);
-  private token = isPlatformBrowser(this.platformId) ? localStorage.getItem('token') : '';
+  platformId = inject(PLATFORM_ID);
 
   getHttpOptions() {
-    const token = isPlatformBrowser(this.platformId) ? localStorage.getItem('token') : '';
+    const isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+    const token = isBrowser ? localStorage.getItem('token') : '';
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -24,9 +23,16 @@ export class Data {
       }),
     };
   }
-
-  login(obj: login): Observable<any> {
+  //login user, password
+  login(obj: any): Observable<any> {
     return this.httpClient.post(this.apiURL + 'auth/login', obj);
   }
 
+  getCurrentUserData(): Observable<any> {
+    return this.httpClient.get(this.apiURL + 'users/currentUser', this.getHttpOptions());
+  }
+
+  getDeposits(): Observable<any> {
+    return this.httpClient.get(this.apiURL + 'users/deposits', this.getHttpOptions());
+  }
 }
