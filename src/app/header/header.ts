@@ -26,7 +26,7 @@ export class Header {
   }
 
   manageButton():string{
-    if(this.signalUserProfile.name != "login" ){
+    if(this.signalUserProfile() != "login" ){
       return '/profile';
     }
       return '/login';
