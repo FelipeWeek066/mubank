@@ -2,11 +2,14 @@
 <main>
   <section class="login-section">
     <div class="container-login">
-      <h2>Acesse sua conta</h2>
-      <form action="profile.html" method="post">
+      <h2>valide seu codigo</h2>
+      <form [formGroup]="validateForm" (ngSubmit)="validate()" >
         <div class="codigo-container">
-          <p>codigo:</p>
-          <input type="text">
+          <label> codigo: </label>
+          <input type="text" formControlName="code">
+          <br>
+          <label>  senha: </label>
+          <input type="text" formControlName="password">
         </div>
         <div class="form-group">
         </div>

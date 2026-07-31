@@ -1,3 +1,4 @@
+
 <main>
   <section class="profile-page" id="perfil">
     <div class="container">
@@ -24,7 +25,7 @@
             </div>
 
             <div class="avatar-actions">
-             <!-- <button type="button" id="change-photo" class="button button-secondary">Alterar foto</button>-->
+              <!-- <button type="button" id="change-photo" class="button button-secondary">Alterar foto</button>-->
               <input id="photo-input" type="file" accept="image/*" hidden>
             </div>
 
@@ -44,7 +45,7 @@
                 <h2>Movimentações</h2>
 
               </div>
-             <!-- <button type="button" class="button button-secondary">Ver detalhes</button>-->
+              <!-- <button type="button" class="button button-secondary">Ver detalhes</button>-->
             </div>
 
 
@@ -53,16 +54,10 @@
               <input id="profile-name" disabled="true" type="text" value="{{signalUserProfile().name}}">
             </div>
 
-            <!--
-            <div class="profile-actions">
-              <button type="button" id="save-name" class="button button-primary">Salvar alterações</button>
+            <div class="transaction-actions">
+              <button type="button" class="button button-primary" (click)="openDepositModal()">Transferir</button>
             </div>
 
-            <div class="transaction-actions">
-              <button type="button" id="withdraw-button" class="button button-secondary">Sacar</button>
-              <button type="button" class="button button-primary">Depositar</button>
-            </div>
-            -->
             <!-- Serviços (status cards) colocados abaixo de Movimentações -->
             <br>
             <br>
@@ -92,8 +87,8 @@
       </div>
 
       <app-deposit-view></app-deposit-view>
+      <app-deposit></app-deposit>
 
-
-  </div>
+    </div>
   </section>
 </main>

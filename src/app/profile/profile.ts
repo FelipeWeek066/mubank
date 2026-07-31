@@ -1,15 +1,15 @@
-import { Component, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal, WritableSignal, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Data } from '../data';
 import { platform } from 'node:os';
 import { Router } from '@angular/router';
-import {routes} from "../app.routes";
+import { routes } from '../app.routes';
 import currentUser from '../../entities/currentUser';
 import { DepositView } from '../deposit-view/deposit-view';
-
+import { Deposit } from '../deposit/deposit';
 @Component({
   selector: 'app-profile',
-  imports: [DepositView],
+  imports: [DepositView, Deposit],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -17,6 +17,8 @@ class Profile {
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
   private data: Data = inject(Data);
+
+  @ViewChild(Deposit) depositComponent!: Deposit;
 
   //esse mano ai que resolveu a renderização, os tal dos Signal
   signalUserProfile: WritableSignal<currentUser> = signal<currentUser>(new currentUser());
@@ -30,7 +32,12 @@ class Profile {
     });
   }
 
+  openDepositModal(): void {
+    if (this.depositComponent) {
+      this.depositComponent.openModal();
+    }
+  }
   protected readonly currentUser = currentUser;
 }
 
-export default Profile
+export default Profile;

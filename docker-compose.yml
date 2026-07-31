@@ -1,17 +1,13 @@
 services:
+  #docker compose build to just build the image,
+  #docker compose up -build to build and create a container locally.
+  #docker compose push to push to hub.
   mubank:
     container_name: mubank-front
-    build:
-      context: "/"
-    image: mubank-front:latest
-    env_file:
-      - "./.env"
+    build: .
+    image: week066/mubank_frontend:latest
     ports:
-      - 80:80
+      - 4000:4000
     expose:
-      - 80
-    networks:
-      - internalnet
-networks:
-  internalnet:
-    driver: bridge
+      - 4000
+

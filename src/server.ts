@@ -10,6 +10,7 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
+app.set('trust proxy', true);
 const angularApp = new AngularNodeAppEngine();
 
 /**
@@ -27,6 +28,25 @@ const angularApp = new AngularNodeAppEngine();
 /**
  * Serve static files from /browser
  */
+app.use((req, res, next) => {
+  if (req.headers.host === 'localhost') {
+    // Se o Angular estiver rodando na porta 80, ele espera receber 'localhost' puro.
+    const port = process.env['PORT'] || 80;
+    req.headers['host'] = port === '80' ? 'localhost' : `localhost:${port}`;
+  }
+  next();
+});
+
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use((req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
+    .catch(next);
+});
+
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
@@ -41,9 +61,7 @@ app.use(
 app.use((req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 

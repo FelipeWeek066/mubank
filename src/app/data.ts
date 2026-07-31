@@ -28,11 +28,19 @@ export class Data {
     return this.httpClient.post(this.apiURL + 'auth/login', obj);
   }
 
+  validateCode(obj: any): Observable<any> {
+    return this.httpClient.post(this.apiURL + 'auth/validate', obj);
+  }
+
   getCurrentUserData(): Observable<any> {
     return this.httpClient.get(this.apiURL + 'users/currentUser', this.getHttpOptions());
   }
 
   getDeposits(): Observable<any> {
     return this.httpClient.get(this.apiURL + 'users/deposits', this.getHttpOptions());
+  }
+
+  deposit(obj: any): Observable<any> {
+    return this.httpClient.post(this.apiURL + 'users/deposit', obj, this.getHttpOptions());
   }
 }
