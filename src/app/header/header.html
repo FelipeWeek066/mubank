@@ -1,12 +1,24 @@
 <header class="site-header">
   <div class="container header-content">
-    <a href="#" class="logo"><span class="logo-gold">MU</span>Bank</a>
+    <a  routerLink="/" class="logo"><span class="logo-gold">MU</span>Bank</a>
     <nav class="main-nav">
       <a href="https://hytale.com/">Compre Hytale original aqui</a>|
       <a href="https://site.mup.gg/">Servidor MUP</a>|
       <a href="#membros">Equipe</a>
+      @if(utils.islogged()){
+      <div class="dropdown">
 
-      <a href= {{manageButton()}}> {{ signalUserProfile() }}</a>
+        <a role="button" data-bs-toggle="dropdown"> {{ data.signalUserProfile().name }}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/profile">perfil</a></li>
+          <li><a class="dropdown-item" routerLink="/config">configurações</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li ><a class="dropdown-item text-danger"  routerLink="/"(click)="utils.logout()">sair</a></li>
+        </ul>
+      </div>
+      } @else {
+        <a role="button" routerLink= "/login"> login</a>
+      }
     </nav>
   </div>
 </header>

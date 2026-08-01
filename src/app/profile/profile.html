@@ -6,14 +6,14 @@
         <div class="profile-heading">
           <div>
             <p class="eyebrow">Painel de perfil</p>
-            <h1>olá <span>{{signalUserProfile().name}}</span></h1>
+            <h1>olá <span>{{data.signalUserProfile().name}}</span></h1>
             <p class="profile-lead">Fidelidade com MUBank ⭐⭐⭐⭐⭐ </p>
 
           </div>
 
           <div class="balance-summary">
             <span class="summary-label">Saldo disponível</span>
-            <div class="balance-tag"><span id="balance-amount">{{signalUserProfile().amount}} MuCoins</span></div>
+            <div class="balance-tag"><span id="balance-amount">{{data.signalUserProfile().amount}} MuCoins</span></div>
 
           </div>
         </div>
@@ -31,8 +31,8 @@
 
             <div class="profile-info-card">
               <h2>Resumo rápido</h2>
-              <div class="info-row"><span>Nome</span><strong id="profile-display-name">{{signalUserProfile().name}}</strong></div>
-              <div class="info-row"><span>Cliente</span><strong>Desde {{signalUserProfile().entryDate}}</strong></div>
+              <div class="info-row"><span>Nome</span><strong id="profile-display-name">{{data.signalUserProfile().name}}</strong></div>
+              <div class="info-row"><span>Cliente</span><strong>Desde {{data.signalUserProfile().entryDate}}</strong></div>
 
 
             </div>
@@ -51,7 +51,7 @@
 
             <div class="profile-field">
               <label for="profile-name">Nome</label>
-              <input id="profile-name" disabled="true" type="text" value="{{signalUserProfile().name}}">
+              <input id="profile-name" disabled="true" type="text" value="{{data.signalUserProfile().name}}">
             </div>
 
             <div class="transaction-actions">

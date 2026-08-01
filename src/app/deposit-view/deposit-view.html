@@ -5,15 +5,14 @@
     <span class="table-note">Histórico</span>
   </div>
   <div class="table-wrapper">
+
     <table class="service-table">
       <thead>
       <tr>
         <th>de</th>
         <th>para</th>
-        <th>data</th>
-        <th>Status</th>
         <th>valor</th>
-
+        <th>data</th>
       </tr>
       </thead>
       <tbody>
@@ -21,9 +20,10 @@
       <tr>
         <td>{{ deposit.payer }}</td>
         <td>{{ deposit.payee }}</td>
-        <td>{{ deposit.date }}</td>
-        <td><span class="status-badge status-open">concluido</span></td>
         <td>{{ deposit.amount }}</td>
+        <td>{{ deposit.date }}</td>
+
+
       </tr>
         } @empty {
           <td colspan="2">Nenhum depósito encontrado.</td>

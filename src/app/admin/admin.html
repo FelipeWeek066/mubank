@@ -1,0 +1,20 @@
+<h1>users ativos</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">nome</th>
+    <th scope="col">data</th>
+    <th scope="col">quantias</th>
+  </tr>
+  </thead>
+  <tbody>
+  @for (user of userSignal(); track user.name){
+  <tr>
+    <td>{{ user.name }}</td>
+    <td>{{ user.entryDate }}</td>
+    <td>{{ user.amount }}</td>
+  </tr>
+  }
+  </tbody>
+</table>

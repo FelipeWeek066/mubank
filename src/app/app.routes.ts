@@ -4,9 +4,13 @@ import { Login } from './login/login';
 import Profile from './profile/profile';
 import { Validate } from './validate/validate';
 import { RenderMode, ServerRoute } from '@angular/ssr';
+import { Admin } from './admin/admin';
+import { Config } from './config/config';
 export const routes: Routes = [
   { path: '', component: Home, title: 'mubank' },
   { path: 'login', component: Login, title: 'login' },
-  { path: 'profile', component: Profile, title: 'perfil'},
+  { path: 'profile', component: Profile, title: 'perfil' },
   { path: 'validate', component: Validate, title: 'validar' },
+  { path: 'admin', component: Admin, title: 'admininastro' },
+  { path: 'config', component: Config, title: 'configurações' },
 ];

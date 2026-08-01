@@ -1,9 +1,10 @@
-import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID, WritableSignal, signal } from '@angular/core';
 
 import { enviroment } from '../enviroments/enviroment';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import currentUser from '../entities/currentUser';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class Data {
   private apiURL = enviroment.API_BASE_URL;
   private httpClient = inject(HttpClient);
   platformId = inject(PLATFORM_ID);
-
+  signalUserProfile: WritableSignal<currentUser> = signal<currentUser>(new currentUser());
   getHttpOptions() {
     const isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
     const token = isBrowser ? localStorage.getItem('token') : '';
@@ -42,5 +43,13 @@ export class Data {
 
   deposit(obj: any): Observable<any> {
     return this.httpClient.post(this.apiURL + 'users/deposit', obj, this.getHttpOptions());
+  }
+
+
+
+  //admins
+
+  getAllUsers(): Observable<any> {
+    return this.httpClient.get(this.apiURL + 'users', this.getHttpOptions());
   }
 }

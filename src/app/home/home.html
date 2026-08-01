@@ -7,12 +7,22 @@
 
     <div class="container hero-content">
       <div class="hero-text">
-        <h1 class="hero-title">Bem-vindo ao MUBank</h1>
+        <h1 class="hero-title">Bem-vindo ao MUBank @if(utils.islogged()){
+          {{data.signalUserProfile().name}}
+        }</h1>
         <p class="hero-subtitle">Banco central do MUP</p>
 
         <div class="hero-cta">
-          <a href="/validate" class="btn btn-primary">validar Codigo</a>
+          @if(!utils.islogged()){
+          <a routerLink="/validate" class="btn btn-primary">validar Codigo</a>
+          } @else {
+          <a  routerLink="/profile" class="btn btn-primary">ir ao perfil</a>
+          }
           <a href="#membros" class="btn btn-secondary">Conheça a Equipe</a>
+          <br>
+          @if(utils.isAdmin()){
+            <a routerLink="/admin" class="btn btn-secondary">admininastro</a>
+          }
         </div>
 
         <div class="hero-features">

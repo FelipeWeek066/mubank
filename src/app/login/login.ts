@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { Data } from '../data';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import currentUser from '../../entities/currentUser';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,15 @@ export class Login {
         console.log("Logado com sucesso ", isPlatformBrowser(this.platformId) ? localStorage.getItem('token') : '');
         const tokenValue = response.token;
         isPlatformBrowser(this.platformId) ? localStorage.setItem('token', tokenValue) : '';
-        isPlatformBrowser(this.platformId) ? localStorage.setItem('name', <string>this.loginForm.value.login) : '';
+
+
+        this.data.getCurrentUserData().subscribe({
+          next: (current: currentUser) => {
+            this.data.signalUserProfile.update(() => current);
+          },
+          error: (error: any) => this.data.signalUserProfile.update(() => new currentUser()),
+        });
+
         this.router.navigate(['/profile']);
 
       },

@@ -16,17 +16,17 @@ import { Deposit } from '../deposit/deposit';
 class Profile {
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
-  private data: Data = inject(Data);
+   data: Data = inject(Data);
 
   @ViewChild(Deposit) depositComponent!: Deposit;
 
   //esse mano ai que resolveu a renderização, os tal dos Signal
-  signalUserProfile: WritableSignal<currentUser> = signal<currentUser>(new currentUser());
+
 
   ngOnInit() {
     this.data.getCurrentUserData().subscribe({
       next: (response: currentUser) => {
-        this.signalUserProfile.update(() => response);
+        this.data.signalUserProfile.update(() => response);
       },
       error: (error: any) => this.router.navigate(['/']),
     });

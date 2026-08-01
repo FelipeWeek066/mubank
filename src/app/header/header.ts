@@ -1,34 +1,29 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { Data } from '../data';
 import currentUser from '../../entities/currentUser';
 import { routes } from '../app.routes';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { UtilsService } from '../utils-service';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
+  utils = inject(UtilsService);
   private router = inject(Router);
-
-  private data: Data = inject(Data);
-  signalUserProfile: WritableSignal<String> = signal<String>('');
-
+  private platformId = inject(PLATFORM_ID);
+  data: Data = inject(Data);
   ngOnInit() {
     this.data.getCurrentUserData().subscribe({
-      next: (response: any) => {
-        this.signalUserProfile.update(() => response.name)
+      next: (response: currentUser) => {
+        this.data.signalUserProfile.update(() => response);
       },
-      error: (error: any) => this.signalUserProfile.update(() => "login")
+      error: (error: any) => this.data.signalUserProfile.update(() => new currentUser()),
     });
   }
 
-  manageButton():string{
-    if(this.signalUserProfile() != "login" ){
-      return '/profile';
-    }
-      return '/login';
-  }
 }

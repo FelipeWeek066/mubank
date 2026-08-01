@@ -1,0 +1,90 @@
+<main>
+  <section class="profile-page" id="perfil">
+    <div class="container">
+      <div class="profile-card">
+        <div class="profile-heading">
+          <div>
+            <h1 class="eyebrow">Editar Dados</h1>
+
+
+          </div>
+
+          <div>
+            <button type="button" onclick="window.history.back()" class="btn btn-danger">cancelar</button>
+            <button type="button" class="btn btn-primary">salvar</button>
+           </div>
+         </div>
+
+         <div class="profile-grid">
+           <aside class="profile-sidebar">
+             <div class="avatar-wrap">
+               <img id="profile-photo" src="/img/sem-foto.png" alt="Foto de perfil">
+             </div>
+
+             <div class="avatar-actions">
+               <!-- <button type="button" id="change-photo" class="button button-secondary">Alterar foto</button>-->
+              <input id="photo-input" type="file" accept="image/*" hidden>
+            </div>
+
+            <div class="profile-info-card">
+              <h2>Resumo rápido</h2>
+               <div class="info-row"><span>Nome</span><strong id="profile-display-name">{{data.signalUserProfile()}}</strong></div>
+               <div class="info-row"><span>Cliente</span><strong>Desde {{data.signalUserProfile().entryDate}}</strong></div>
+
+
+               </div>
+
+             </aside>
+
+             <section class="profile-main">
+               <div class="section-header">
+                 <div>
+                   <h2>Movimentações</h2>
+
+                 </div>
+                 <!-- <button type="button" class="button button-secondary">Ver detalhes</button>-->
+            </div>
+
+
+            <div class="profile-field">
+              <label for="profile-name">Nome</label>
+             <!-- <input id="profile-name" disabled="true" type="text" value="{{signalUserProfile().name}}"> -->
+            </div>
+
+
+
+            <!-- Serviços (status cards) colocados abaixo de Movimentações -->
+            <br>
+            <br>
+            <div class="service-overview">
+              <div class="service-status-grid">
+                <div class="status-card status-open">
+                  <span>1</span>
+                  <div>
+                    <h3>Aguardando pagamento</h3>
+                    <p>Contratos em aberto aguardando pagamento</p>
+                  </div>
+                </div>
+                <div class="status-card status-pending">
+                  <span>1</span>
+                  <div>
+                    <h3>Pendentes</h3>
+                    <p>Não pagamento resultará em penalidades</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+        <!-- serviços movidos para dentro de Movimentações -->
+      </div>
+
+    </div>
+
+  </section>
+</main>

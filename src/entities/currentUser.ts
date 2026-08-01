@@ -7,9 +7,11 @@ export default class currentUser {
   name: string;
   amount: number;
   entryDate: string;
+  role: string;
   constructor() {
     this.name = '';
     this.amount = 0;
     this.entryDate = '';
+    this.role = 'null';
   }
 }

@@ -1,0 +1,376 @@
+.transfer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fade-in 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.transfer-modal-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modal-slide 0.3s ease-out;
+}
+
+@keyframes modal-slide {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.close-button {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: var(--text);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.transfer-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: rgba(59, 130, 246, 0.05);
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.input-error {
+  border-color: var(--danger);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.error-text {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  border: 1px solid;
+}
+
+.alert-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.alert-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  color: white;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.button-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.button-primary:disabled {
+  background: var(--surface-alt);
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: var(--border);
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.button-secondary:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--text);
+  border-color: var(--primary);
+}
+
+.button-secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ===== TABLET (768px e menores) ===== */
+@media (max-width: 768px) {
+  .transfer-modal-container {
+    max-width: 95%;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .transfer-form {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+/* ===== MOBILE (480px e menores) ===== */
+@media (max-width: 480px) {
+  .transfer-modal-container {
+    max-width: 100%;
+    width: 95vw;
+    border-radius: 16px 16px 0 0;
+    max-height: 85vh;
+    margin-bottom: 0;
+  }
+
+  .modal-header {
+    padding: 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .close-button {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .transfer-form {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .form-input {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+
+  .button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ===== EXTRA SMALL (360px) ===== */
+@media (max-width: 360px) {
+  .transfer-modal-overlay {
+    padding: 0;
+  }
+
+  .transfer-modal-container {
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    max-height: 100vh;
+  }
+
+  .modal-header {
+    padding: 12px 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+
+  .close-button {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .transfer-form {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .error-text {
+    font-size: 11px;
+  }
+
+  .alert {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .modal-actions {
+    gap: 8px;
+  }
+
+  .button {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ===== VERY SMALL (320px) ===== */
+@media (max-width: 320px) {
+  .transfer-modal-container {
+    width: 100vw;
+  }
+
+  .modal-header {
+    padding: 10px 12px;
+  }
+
+  .modal-header h2 {
+    font-size: 14px;
+  }
+
+  .transfer-form {
+    padding: 12px 14px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+  }
+
+  .form-input {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .button {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}
