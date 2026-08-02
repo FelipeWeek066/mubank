@@ -16,11 +16,29 @@
           id="userName"
           list="bancosOptions"
           type="text"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          autocomplete="off"
           formControlName="payee"
+          (input)="updateList()"
           placeholder="Digite o nome do usuário"
-          class="form-input"
+          class="form-input dropdown-toggle"
           [class.input-error]="userNameControl?.invalid && userNameControl?.touched"
         />
+        @if(filteredUsers().length >= 1){
+        <div class="dropdown">
+        <ul class="dropdown-menu" [class.show]="isFocused()">
+
+          @for (option of filteredUsers(); track option) {
+            <li>
+              <button class="dropdown-item" (click)="selectName(option)">{{ option }}</button>
+            </li>
+          }
+        </ul>
+
+        </div>
+
+        }
 
         @if(userNameControl?.invalid && userNameControl?.touched){
         <div  class="error-text">

@@ -13,13 +13,31 @@ import bootstrap from '../../main.server';
 export class Deposit {
   private fb = inject(FormBuilder);
   private data: Data = inject(Data);
-
+  filteredUsers = signal<string[]>([]);
+  isOpen = signal<boolean>(false);
   depositForm: FormGroup;
   isModalOpen: WritableSignal<boolean> = signal(false);
   isLoading: WritableSignal<boolean> = signal(false);
   successMessage: WritableSignal<string> = signal('');
   errorMessage: WritableSignal<string> = signal('');
 
+  isFocused = signal<boolean>(false);
+
+  onFocus(): void {
+    this.isFocused.set(true);
+  }
+
+  // Quando o usuário clica fora/sai do input
+  onBlur(): void {
+    // O setTimeout garante que o evento de clique na opção do dropdown aconteça antes do menu fechar
+    setTimeout(() => {
+      this.isFocused.set(false);
+    }, 200);
+  }
+  selectOption(optionText: string): void {
+    console.log('Selecionou:', optionText);
+    this.isFocused.set(false);
+  }
   constructor() {
     this.depositForm = this.fb.group({
       payee: ['', [Validators.required, Validators.minLength(3)]],
@@ -83,4 +101,22 @@ export class Deposit {
   get amountControl() {
     return this.depositForm.get('amount');
   }
+
+  updateList() {
+    if (this.depositForm.get('payee')?.value.length > 2) {
+      this.data.searchUser(this.depositForm.get('payee')?.value).subscribe({
+        next: (response: string[]) => {
+          this.filteredUsers.update(() => response);
+        },
+      });
+    }else{
+      this.filteredUsers.update(() => []);
+    }
+  }
+    selectName(name: any): void {
+      this.depositForm.get('payee')?.setValue(name);
+    }
+
+
+  protected readonly name = name;
 }

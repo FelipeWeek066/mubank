@@ -45,7 +45,9 @@ export class Data {
     return this.httpClient.post(this.apiURL + 'users/deposit', obj, this.getHttpOptions());
   }
 
-
+  searchUser(obj: any): Observable<any> {
+    return this.httpClient.get(this.apiURL + 'users/search?search=' + obj, this.getHttpOptions());
+  }
 
   //admins
 
