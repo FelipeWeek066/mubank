@@ -24,7 +24,7 @@
           placeholder="Digite o nome do usuário"
           class="form-input dropdown-toggle"
           [class.input-error]="userNameControl?.invalid && userNameControl?.touched"
-        />
+        >
         @if(filteredUsers().length >= 1){
         <div class="dropdown">
         <ul class="dropdown-menu" [class.show]="isFocused()">

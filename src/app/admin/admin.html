@@ -1,20 +1,24 @@
-<h1>users ativos</h1>
+<div class=" text-center">
 
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">nome</th>
-    <th scope="col">data</th>
-    <th scope="col">quantias</th>
-  </tr>
-  </thead>
-  <tbody>
-  @for (user of userSignal(); track user.name){
-  <tr>
-    <td>{{ user.name }}</td>
-    <td>{{ user.entryDate }}</td>
-    <td>{{ user.amount }}</td>
-  </tr>
-  }
-  </tbody>
-</table>
+  <div class="row">
+
+    <div class=" col-2 bg-dark ">
+      <div class="~container">
+      <ul class="list-group list-group-flush gap-2 ">
+        <button class="button list-group-item bg-dark text-light" (click)="this.currentScreen = 0">geral</button>
+        <button class="button list-group-item bg-dark text-light" (click)="this.currentScreen = 1">tabela de usuarios</button>
+      </ul>
+    </div>
+    </div>
+    <div class="col">
+    <div class="container gx-3 border border-light border-3 bg-dark text-light rounded">
+      @if(this.currentScreen == 0){
+        <app-general-admin-view></app-general-admin-view>
+      }
+      @if(this.currentScreen == 1){
+      <app-all-users-search/>
+      }
+    </div>
+  </div>
+</div>
+</div>
