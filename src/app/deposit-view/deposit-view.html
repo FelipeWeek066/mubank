@@ -18,15 +18,11 @@
       <tbody>
         @for (deposit of depositSignal(); track deposit.payee; let idx = $index){
           @if (idx < 5) {
-
-
       <tr>
         <td>{{ deposit.payer }}</td>
         <td>{{ deposit.payee }}</td>
         <td>{{ deposit.amount }}</td>
         <td>{{ deposit.date }}</td>
-
-
       </tr>
           }
         } @empty {

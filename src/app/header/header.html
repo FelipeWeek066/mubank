@@ -1,27 +1,22 @@
-<header class="site-header">
-  <div class="container header-content">
-
-    <a  routerLink="/" class="logo"><span class="logo-gold">MU</span>Bank</a>
-    <nav class="main-nav">
-      <a href="https://hytale.com/">Compre Hytale original aqui</a>|
-      <a href="https://site.mup.gg/">Servidor MUP</a>|
-      <a href="#membros">Equipe</a>
-      @if(utils.islogged()){
-      <div class="dropdown">
+<nav class="navbar bg-dark">
+  <div class="container">
+    <a class="navbar-brand text-light font-monospace " routerLink="/" >
+      <img src="favicon.png" style="image-rendering: pixelated;" alt="Logo" width="40" height="40" class="d-inline-block ">
+      Mubank
+    </a>
+    @if(utils.islogged()){
+      <div class="btn-group ">
 
         <a role="button" data-bs-toggle="dropdown"> {{ data.signalUserProfile().name }}</a>
-        <ul class="dropdown-menu dropdown-menu-dark">
+        <ul class="dropdown-menu dropdown-menu-dark position-absolute dropdown-menu-end">
           <li><a class="dropdown-item" routerLink="/profile">perfil</a></li>
           <li><a class="dropdown-item" routerLink="/config">configurações</a></li>
           <li><hr class="dropdown-divider"></li>
           <li ><a class="dropdown-item text-danger"  routerLink="/"(click)="utils.logout()">sair</a></li>
         </ul>
       </div>
-      } @else {
-        <a role="button" routerLink= "/login"> login</a>
-      }
-    </nav>
+    } @else {
+      <a role="button" routerLink= "/login"> login</a>
+    }
   </div>
-</header>
-
-<div class="section-divider"></div>
+</nav>

@@ -13,6 +13,7 @@ import { GeneralAdminView } from '../general-admin-view/general-admin-view';
 })
 export class Admin {
   currentScreen = currentScreen.geral;
+  protected readonly GeneralAdminView = GeneralAdminView;
 }
 export enum currentScreen{
   geral,

@@ -15,7 +15,7 @@ export class DepositView {
   ngOnInit() {
     this.data.getDeposits().subscribe({
       next: (response: deposit[]) => {
-        this.depositSignal.set(response);
+        this.depositSignal.set(response.reverse());
       },
       error: (error: any) => console.log(error),
     });
